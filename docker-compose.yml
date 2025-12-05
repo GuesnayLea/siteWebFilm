@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: symfony-app2
     volumes:
-      - ./site-dino:/var/www/app
+      - ./projetFilm:/var/www/app
     ports:
       - "8084:80"
     depends_on:
@@ -16,12 +16,26 @@ services:
     container_name: symfony-db2
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dinos
+      MYSQL_DATABASE: Film_db
     ports:
       - "3308:3306"
     volumes:
       - db_data:/var/lib/mysql
-      - ./dinodb_clean.sql:/docker-entrypoint-initdb.d/dinodb_clean.sql:ro
+      - ./Film_db.sql:/docker-entrypoint-initdb.d/Film_db.sql:ro
+
+  phpmyadmin:  # ← Même niveau que 'app' et 'db' (2 espaces)
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: symfony-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    restart: unless-stopped
 
 volumes:
   db_data:
+  
