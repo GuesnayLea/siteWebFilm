@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil - Cinéma en ligne{% endblock %}
+{% block title %}Catalogue de Films{% endblock %}
 
 {% block body %}
 <div class="container">
-    <!-- Hero Section -->
+
     <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">
-                <i class="bi bi-camera-reels"></i> Bienvenue sur Cinéma en ligne
+                <i class="bi bi-camera-reels"></i> Catalogue de films
             </h1>
             <p class="col-md-8 fs-4">
-                Découvrez notre vaste collection de films, louez vos favoris et profitez de promotions exclusives.
+                Retrouvez une large gamme de film, sélectionné avec amour par nos soins.
             </p>
             <a href="{{ path('app_film_index') }}" class="btn btn-primary btn-lg">
                 <i class="bi bi-film"></i> Voir le catalogue
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <!-- Features -->
+
     <div class="row align-items-md-stretch mb-4">
         <div class="col-md-4">
             <div class="h-100 p-5 text-white bg-dark rounded-3">
@@ -41,7 +41,6 @@
         </div>
     </div>
 
-    <!-- Appel à l'action -->
     <div class="card text-center mt-4">
         <div class="card-body">
             <h5 class="card-title">Prêt à commencer ?</h5>

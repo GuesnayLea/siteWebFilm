@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil - {{ user.nom }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-person-circle"></i> Informations personnelles</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-person-circle display-1 text-primary"></i>
+                    </div>
+                    <p><strong><i class="bi bi-person"></i> Nom :</strong> {{ user.nom }}</p>
+                    <p><strong><i class="bi bi-envelope"></i> Email :</strong> {{ user.email }}</p>
+                    <p><strong><i class="bi bi-calendar"></i> Date d'inscription :</strong> {{ user.dateInscription|date('d/m/Y') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-film"></i> Mes films ajoutés</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <i class="bi bi-collection-play display-3 text-success mb-3"></i>
+                            <p class="card-text">Gérez les films que vous avez ajoutés au catalogue.</p>
+                            <a href="{{ path('app_film_new') }}" class="btn btn-success">
+                                <i class="bi bi-plus-circle"></i> Ajouter un film
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-white">
+                            <h5 class="mb-0"><i class="bi bi-heart"></i> Mes favoris</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <i class="bi bi-heart display-3 text-warning mb-3"></i>
+                            <p class="card-text">Consultez vos films préférés.</p>
+                            <a href="{{ path('app_film_index') }}" class="btn btn-warning">
+                                <i class="bi bi-search"></i> Voir le catalogue
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0"><i class="bi bi-clock-history"></i> Historique</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <i class="bi bi-clock-history display-3 text-info mb-3"></i>
+                            <p class="card-text">Vos locations précédentes.</p>
+                            <button class="btn btn-info" disabled>
+                                <i class="bi bi-eye"></i> À venir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="mb-0"><i class="bi bi-gear"></i> Paramètres</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            <i class="bi bi-gear display-3 text-secondary mb-3"></i>
+                            <p class="card-text">Modifiez vos préférences.</p>
+                            <button class="btn btn-secondary" disabled>
+                                <i class="bi bi-pencil"></i> Modifier le profil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

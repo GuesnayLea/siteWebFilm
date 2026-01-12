@@ -70,8 +70,11 @@ INSERT INTO `TARIF_DYNAMIQUE` (`jour_semaine`, `pourcentage_reduction`, `actif`)
 
 -- Insertion de quelques films exemple
 INSERT INTO `FILM` (`titre`, `annee`, `duree`, `synopsis`, `genre`, `prix_location_par_defaut`, `chemin_affiche`) VALUES
-('Inception', 2010, 148, 'Un voleur qui s''infiltre dans les rêves', 'Science-Fiction', 3.99, 'https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/72/34/14/19476654.jpg'),
+('Inception', 2010, 148, 'Un voleur qui s infiltre dans les rêves', 'Science-Fiction', 3.99, 'https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/72/34/14/19476654.jpg'),
 ('Le Parrain', 1972, 175, 'L''histoire d''une famille mafieuse', 'Drame', 2.99, 'https://fr.web.img6.acsta.net/c_310_420/pictures/22/01/14/08/39/1848157.jpg'),
 ('Interstellar', 2014, 169, 'Un voyage spatial pour sauver l''humanité', 'Science-Fiction', 4.50, 'https://fr.web.img5.acsta.net/c_310_420/pictures/14/09/24/12/08/158828.jpg'),
 ('La La Land', 2016, 128, 'Une histoire d''amour à Los Angeles', 'Musical', 3.25, 'https://fr.web.img2.acsta.net/c_310_420/pictures/16/11/10/13/52/169386.jpg'),
 ('Les Évadés', 1994, 142, 'Un banquier emprisonné s''évade', 'Drame', 2.75, 'https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/63/30/68/18686447.jpg');
+
+INSERT INTO `UTILISATEUR` (`email`, `mot_de_pass_hash`, `nom`, `date_inscriptop,`) VALUES 
+('lea.guesnay@orange.fr','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Guesnay','29/12/2015');

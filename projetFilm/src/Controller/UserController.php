@@ -5,14 +5,33 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class UserController extends AbstractController
+#[Route('/profil')]
+class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/', name: 'app_profile')]
+    #[IsGranted('ROLE_USER')]
     public function index(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+        $user = $this->getUser();
+        
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
         ]);
+    }
+    
+    #[Route('/favoris', name: 'app_profile_favoris')]
+    #[IsGranted('ROLE_USER')]
+    public function favoris(): Response
+    {
+        return $this->render('user/favoris.html.twig');
+    }
+    
+    #[Route('/historique', name: 'app_profile_historique')]
+    #[IsGranted('ROLE_USER')]
+    public function historique(): Response
+    {
+        return $this->render('user/historique.html.twig');
     }
 }
