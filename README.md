@@ -18,13 +18,13 @@ php -S 0.0.0.0:8082 -t public
 Installer Validator :
 php ../composer.phar require symfony/validator
 
-# Démarrer les conteneurs
+## Démarrer les conteneurs
 docker-compose up -d
 
-# Accéder au site
+## Accéder au site
 http://localhost:8084
 
-# Accéder à phpMyAdmin
+## Accéder à phpMyAdmin
 http://localhost:8080
 
 # dans téléchargement avec le fichier php8.tar

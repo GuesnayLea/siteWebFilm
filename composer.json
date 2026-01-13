@@ -2,6 +2,7 @@
     "require": {
         "timber/timber": "^2.3",
         "symfony/asset": "^7.4",
-        "symfony/webapp-pack": "^1.4"
+        "symfony/webapp-pack": "^1.4",
+        "symfony/password-hasher": "^7.4"
     }
 }
