@@ -3,24 +3,77 @@
 {% block title %}Ajouter un film{% endblock %}
 
 {% block body %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Ajouter un nouveau film</h4>
-            </div>
-            <div class="card-body">
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-success">
-                            <i class="bi bi-check-circle"></i> Enregistrer
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-plus-circle"></i> Ajouter un nouveau film
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    
+                    <!-- Titre du film -->
+                    <div class="mb-3">
+                        <label class="form-label">Titre du film *</label>
+                        {{ form_widget(form.titre, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Inception'}}) }}
+                        <small class="form-text text-muted">Le titre complet du film</small>
+                    </div>
+                    
+                    <!-- Année et Durée -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Année de sortie *</label>
+                            {{ form_widget(form.annee, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 2024'}}) }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Durée (minutes) *</label>
+                            {{ form_widget(form.duree, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 120'}}) }}
+                        </div>
+                    </div>
+                    
+                    <!-- Genre -->
+                    <div class="mb-3">
+                        <label class="form-label">Genre</label>
+                        {{ form_widget(form.genre, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Action, Comédie, Drame...'}}) }}
+                    </div>
+                    
+                    <!-- Synopsis -->
+                    <div class="mb-3">
+                        <label class="form-label">Synopsis</label>
+                        {{ form_widget(form.synopsis, {'attr': {'class': 'form-control', 'rows': 4, 'placeholder': 'Description du film...'}}) }}
+                    </div>
+                    
+                    <!-- Prix et Affiche -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Prix de location *</label>
+                            <div class="input-group">
+                                {{ form_widget(form.prixLocationParDefaut, {'attr': {'class': 'form-control', 'placeholder': 'Ex: 3.99'}}) }}
+                                <span class="input-group-text">€</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">URL de l'affiche</label>
+                            {{ form_widget(form.cheminAffiche, {'attr': {'class': 'form-control', 'placeholder': 'https://exemple.com/affiche.jpg'}}) }}
+                            <small class="form-text text-muted">Laissez vide pour utiliser une image par défaut</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Boutons -->
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="bi bi-check-circle"></i> Enregistrer le film
                         </button>
-                        <a href="{{ path('app_film_index') }}" class="btn btn-outline-secondary">
+                        <a href="{{ path('app_film_index') }}" class="btn btn-outline-secondary ms-2">
                             <i class="bi bi-x-circle"></i> Annuler
                         </a>
                     </div>
-                {{ form_end(form) }}
+                    
+                    {{ form_end(form) }}
+                </div>
             </div>
         </div>
     </div>

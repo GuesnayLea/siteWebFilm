@@ -23,7 +23,7 @@ services:
       - db_data:/var/lib/mysql
       - ./Film_db.sql:/docker-entrypoint-initdb.d/Film_db.sql:ro
 
-  phpmyadmin:  # ← Même niveau que 'app' et 'db' (2 espaces)
+  phpmyadmin:  
     image: phpmyadmin/phpmyadmin:latest
     container_name: symfony-phpmyadmin
     environment:

@@ -198,4 +198,5 @@ class FilmController extends AbstractController
         
         return $this->redirectToRoute('app_profile_favoris');
     }
+
 }
