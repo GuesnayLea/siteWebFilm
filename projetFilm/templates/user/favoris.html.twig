@@ -7,22 +7,102 @@
     <div class="row mb-4">
         <div class="col">
             <h1><i class="bi bi-heart"></i> Mes films favoris</h1>
-            <p class="text-muted">Retrouvez ici tous les films que vous avez ajoutés à vos favoris.</p>
+            <p class="text-muted">{{ totalFavoris }} film{{ totalFavoris > 1 ? 's' : '' }} dans vos favoris</p>
+        </div>
+        <div class="col-auto">
+            <a href="{{ path('app_film_index') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Ajouter des favoris
+            </a>
         </div>
     </div>
     
-    <div class="alert alert-info">
-        <i class="bi bi-info-circle"></i> 
-        <strong>Fonctionnalité en développement</strong> - Cette section sera bientôt disponible !
-    </div>
-    
-    <div class="text-center py-5">
-        <i class="bi bi-heart display-1 text-muted"></i>
-        <h3 class="mt-3">Aucun favori pour le moment</h3>
-        <p class="text-muted">Commencez à ajouter des films à vos favoris en explorant le catalogue.</p>
-        <a href="{{ path('app_film_index') }}" class="btn btn-primary">
-            <i class="bi bi-film"></i> Explorer le catalogue
-        </a>
-    </div>
+    {% if films|length > 0 %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for item in films %}
+                {% set film = item.film %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        {% if film.cheminAffiche %}
+                            <img src="{{ film.cheminAffiche }}" class="card-img-top" alt="{{ film.titre }}" style="height: 250px; object-fit: cover;">
+                        {% else %}
+                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 250px;">
+                                <i class="bi bi-camera-reels" style="font-size: 2rem;"></i>
+                            </div>
+                        {% endif %}
+                        
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ film.titre }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{ film.annee }} • {{ film.genre }}
+                            </h6>
+                            <p class="card-text flex-grow-1">
+                                {% if film.synopsis %}
+                                    {{ film.synopsis|slice(0, 80) }}{% if film.synopsis|length > 80 %}...{% endif %}
+                                {% endif %}
+                            </p>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h6 text-primary">{{ film.prixLocationParDefaut|number_format(2, ',', ' ') }} €</span>
+                                <div class="btn-group">
+                                    <a href="{{ path('app_film_show', {'id': film.id}) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-eye"></i> Voir
+                                    </a>
+                                    <form method="post" action="{{ path('app_film_remove_favorite', {'id': film.id}) }}" class="d-inline" onsubmit="return confirm('Retirer ce film de vos favoris ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('remove_favorite_' ~ film.id) }}">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            Retirer
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted small">
+                            <i class="bi bi-calendar"></i> Ajouté le {{ item.dateAjout|date('d/m/Y') }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        {% if totalPages > 1 %}
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page > 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('app_profile_favoris', {'page': page - 1}) }}">
+                                <i class="bi bi-chevron-left"></i> Précédent
+                            </a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for i in 1..totalPages %}
+                        <li class="page-item {{ page == i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ path('app_profile_favoris', {'page': i}) }}">
+                                {{ i }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    
+                    {% if page < totalPages %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path('app_profile_favoris', {'page': page + 1}) }}">
+                                Suivant <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-heart display-1 text-muted"></i>
+            <h3 class="mt-3">Aucun favori pour le moment</h3>
+            <p class="text-muted">Commencez à ajouter des films à vos favoris en explorant le catalogue.</p>
+            <a href="{{ path('app_film_index') }}" class="btn btn-primary">
+                <i class="bi bi-film"></i> Explorer le catalogue
+            </a>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

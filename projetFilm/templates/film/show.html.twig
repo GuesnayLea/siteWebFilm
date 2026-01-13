@@ -61,6 +61,14 @@
                         <i class="bi bi-trash"></i> Supprimer
                     </button>
                 </form>
+                <div class="mt-3">
+                    <form method="post" action="{{ path('app_film_add_favorite', {'id': film.id}) }}" class="d-inline">
+                        <input type="hidden" name="_token" value="{{ csrf_token('add_favorite_' ~ film.id) }}">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-heart"></i> Ajouter à mes favoris
+                        </button>
+                    </form>
+                </div>
             {% endif %}
             <a href="{{ path('app_film_index') }}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Retour au catalogue

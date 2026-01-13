@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Film;
+use App\Entity\TarifDynamique;
+use App\Entity\Favori;
 use App\Form\FilmType;
 use App\Repository\FilmRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -74,10 +76,10 @@ class FilmController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_film_show', methods: ['GET'])]
-    public function show(Film $film): Response
+    public function show(Film $film, EntityManagerInterface $entityManager): Response
     {
-        // Calcul du prix dynamique
-        $prixDynamique = $this->calculerPrixDynamique($film->getPrixLocationParDefaut());
+        // Calcul du prix dynamique avec EntityManager injecté
+        $prixDynamique = $this->calculerPrixDynamique($film->getPrixLocationParDefaut(), $entityManager);
         
         return $this->render('film/show.html.twig', [
             'film' => $film,
@@ -119,11 +121,11 @@ class FilmController extends AbstractController
         return $this->redirectToRoute('app_film_index');
     }
 
-    private function calculerPrixDynamique(float $prixBase): float
+  
+    private function calculerPrixDynamique(string $prixBase, EntityManagerInterface $entityManager): float
     {
         $jour = strtolower(date('l')); // 'monday', 'tuesday', etc.
         
-        // Convertissez en français
         $joursMapping = [
             'monday' => 'lundi',
             'tuesday' => 'mardi',
@@ -136,16 +138,64 @@ class FilmController extends AbstractController
         
         $jourSemaine = $joursMapping[$jour] ?? null;
         
-        // Récupérez la réduction depuis la base de données
-        $entityManager = $this->getDoctrine()->getManager();
-        $tarif = $entityManager->getRepository(\App\Entity\TarifDynamique::class)
+        if (!$jourSemaine) {
+            return (float) $prixBase;
+        }
+        
+
+        $tarif = $entityManager->getRepository(TarifDynamique::class)
             ->findOneBy(['jourSemaine' => $jourSemaine, 'actif' => true]);
         
         if ($tarif) {
-            $reduction = $tarif->getPourcentageReduction();
-            return $prixBase * (1 + $reduction / 100);
+            $reduction = (float) $tarif->getPourcentageReduction();
+            $prixBaseFloat = (float) $prixBase;
+            return $prixBaseFloat * (1 + $reduction / 100);
         }
         
-        return $prixBase;
+        return (float) $prixBase;
+    }
+    #[Route('/{id}/favori/ajouter', name: 'app_film_add_favorite', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function addFavorite(Film $film, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        
+        $favoriExist = $entityManager->getRepository(Favori::class)
+            ->findOneBy(['utilisateur' => $user, 'film' => $film]);
+        
+        if (!$favoriExist) {
+            $favori = new Favori();
+            $favori->setUtilisateur($user);
+            $favori->setFilm($film);
+            $favori->setDateAjout(new \DateTime());
+            
+            $entityManager->persist($favori);
+            $entityManager->flush();
+            
+            $this->addFlash('success', 'Film ajouté à vos favoris !');
+        } else {
+            $this->addFlash('info', 'Ce film est déjà dans vos favoris.');
+        }
+        
+        return $this->redirectToRoute('app_film_show', ['id' => $film->getId()]);
+    }
+
+    #[Route('/{id}/favori/retirer', name: 'app_film_remove_favorite', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function removeFavorite(Film $film, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        
+        $favori = $entityManager->getRepository(Favori::class)
+            ->findOneBy(['utilisateur' => $user, 'film' => $film]);
+        
+        if ($favori) {
+            $entityManager->remove($favori);
+            $entityManager->flush();
+            
+            $this->addFlash('success', 'Film retiré de vos favoris.');
+        }
+        
+        return $this->redirectToRoute('app_profile_favoris');
     }
 }
