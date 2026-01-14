@@ -20,11 +20,9 @@ class FilmController extends AbstractController
     #[Route('/', name: 'app_film_index', methods: ['GET'])]
     public function index(FilmRepository $filmRepository, Request $request): Response
     {
-        // Pagination
         $page = $request->query->getInt('page', 1);
         $limit = 12;
         
-        // Filtres
         $genre = $request->query->get('genre');
         $annee = $request->query->get('annee');
         
@@ -42,7 +40,6 @@ class FilmController extends AbstractController
         
         $paginator = $filmRepository->paginate($query->getQuery(), $page, $limit);
         
-        // Liste des genres pour le filtre
         $genres = $filmRepository->findDistinctGenres();
         $annees = $filmRepository->findDistinctAnnees();
         
@@ -124,7 +121,7 @@ class FilmController extends AbstractController
   
     private function calculerPrixDynamique(string $prixBase, EntityManagerInterface $entityManager): float
     {
-        $jour = strtolower(date('l')); // 'monday', 'tuesday', etc.
+        $jour = strtolower(date('l')); 
         
         $joursMapping = [
             'monday' => 'lundi',

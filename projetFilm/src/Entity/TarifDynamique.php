@@ -23,7 +23,6 @@ class TarifDynamique
     #[ORM\Column(type: 'boolean')]
     private ?bool $actif = null;
 
-    // Getters et Setters
     public function getId(): ?int
     {
         return $this->id;

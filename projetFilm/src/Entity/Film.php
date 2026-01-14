@@ -49,9 +49,6 @@ class Film
         $this->locations = new ArrayCollection();
     }
 
-        // Ajoutez ces méthodes à la classe Film existante
-// Ajoutez ces méthodes à la classe Film existante
-
     public function getId(): ?int
     {
         return $this->id;
@@ -134,9 +131,7 @@ class Film
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favori>
-     */
+   
     public function getFavoris(): Collection
     {
         return $this->favoris;
@@ -154,7 +149,6 @@ class Film
     public function removeFavori(Favori $favori): self
     {
         if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
             if ($favori->getFilm() === $this) {
                 $favori->setFilm(null);
             }
@@ -162,9 +156,7 @@ class Film
         return $this;
     }
 
-    /**
-     * @return Collection<int, Location>
-     */
+    
     public function getLocations(): Collection
     {
         return $this->locations;
@@ -182,7 +174,6 @@ class Film
     public function removeLocation(Location $location): self
     {
         if ($this->locations->removeElement($location)) {
-            // set the owning side to null (unless already changed)
             if ($location->getFilm() === $this) {
                 $location->setFilm(null);
             }

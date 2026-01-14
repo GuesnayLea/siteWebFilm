@@ -37,7 +37,6 @@ class Location
     public function __construct()
     {
         $this->dateLocation = new \DateTime();
-        // Par défaut, retour dans 3 jours
         $this->dateRetourPrevue = (new \DateTime())->modify('+3 days');
     }
 

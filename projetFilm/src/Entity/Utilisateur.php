@@ -95,23 +95,16 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favori>
-     */
     public function getFavoris(): Collection
     {
         return $this->favoris;
     }
 
-    /**
-     * @return Collection<int, Location>
-     */
     public function getLocations(): Collection
     {
         return $this->locations;
     }
 
-    // Implémentation de UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -127,7 +120,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Nettoyer les données sensibles temporaires si nécessaire
+        // fonction pour effacer les données temporaire si on a besoin 
     }
 
     public function getUserIdentifier(): string
