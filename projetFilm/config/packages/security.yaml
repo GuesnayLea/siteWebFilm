@@ -35,3 +35,4 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/films/nouveau, roles: ROLE_USER }
+        - { path: ^/panier, roles: ROLE_USER }

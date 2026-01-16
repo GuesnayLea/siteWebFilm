@@ -36,8 +36,14 @@
                             <a class="nav-link" href="{{ path('app_profile') }}">Mon profil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_film_new') }}">
-                                <i class="bi bi-plus-circle"></i> Ajouter un film
+                            <a class="nav-link" href="{{ path('app_film_new') }}">Ajouter un film</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_cart_index') }}">
+                                <i class="bi bi-cart"></i> Panier
+                                {% if app.session.get('panier_count') and app.session.get('panier_count') > 0 %}
+                                    <span class="badge bg-danger">{{ app.session.get('panier_count') }}</span>
+                                {% endif %}
                             </a>
                         </li>
                         {% endif %}

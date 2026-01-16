@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement - Mon Panier{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="bi bi-credit-card"></i> Simulation de paiement</h4>
+                </div>
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="bi bi-receipt"></i> Récapitulatif</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6>Films à louer :</h6>
+                                <ul class="list-group list-group-flush">
+                                    {% for item in panier %}
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <span>{{ item.titre }} (x{{ item.quantite }})</span>
+                                            <span>{{ (item.prix_dynamique * item.quantite)|format_currency('EUR') }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="text-end">
+                                <h5 class="text-success">Total : {{ totalPanier|format_currency('EUR') }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form method="post" action="{{ path('app_cart_confirm_payment') }}">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="bi bi-credit-card-2-front"></i> Informations de paiement</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Numéro de carte</label>
+                                    <div class="input-group">
+                                        <input type="text" 
+                                               class="form-control" 
+                                               value="4242 4242 4242 4242" 
+                                               readonly
+                                               style="letter-spacing: 2px;">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-credit-card"></i>
+                                        </span>
+                                    </div>
+                                    <small class="text-muted">(Numéro de carte de test)</small>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Date d'expiration</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               value="12/28" 
+                                               readonly
+                                               style="letter-spacing: 2px;">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">CVV</label>
+                                        <input type="text" 
+                                               class="form-control" 
+                                               value="123" 
+                                               readonly
+                                               maxlength="3"
+                                               style="letter-spacing: 2px;">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Nom sur la carte</label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           value="{{ user.nom }}" 
+                                           readonly>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                            <a href="{{ path('app_cart_index') }}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Retour au panier
+                            </a>
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle"></i> Confirmer le paiement
+                            </button>
+                        </div>
+                        
+                        <div class="alert alert-info mt-4">
+                            <i class="bi bi-info-circle"></i>
+                            <strong>Note :</strong> Ceci est une simulation de paiement. 
+                            Aucune transaction réelle ne sera effectuée. 
+                            Après confirmation, vos locations seront enregistrées dans votre compte.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

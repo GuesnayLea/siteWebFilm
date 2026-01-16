@@ -75,7 +75,6 @@ class FilmController extends AbstractController
     #[Route('/{id}', name: 'app_film_show', methods: ['GET'])]
     public function show(Film $film, EntityManagerInterface $entityManager): Response
     {
-        // Calcul du prix dynamique avec EntityManager injecté
         $prixDynamique = $this->calculerPrixDynamique($film->getPrixLocationParDefaut(), $entityManager);
         
         return $this->render('film/show.html.twig', [
@@ -195,5 +194,47 @@ class FilmController extends AbstractController
         
         return $this->redirectToRoute('app_profile_favoris');
     }
+
+    // Dans FilmController.php, ajoutez cette méthode :
+
+#[Route('/{id}/panier/ajouter', name: 'app_film_add_to_cart', methods: ['POST'])]
+#[IsGranted('ROLE_USER')]
+public function addToCart(Film $film, Request $request, EntityManagerInterface $entityManager): Response
+{
+    $quantite = (int) $request->request->get('quantite', 1);
+    
+    if ($quantite < 1) {
+        $quantite = 1;
+    }
+    
+    // Récupérer ou créer le panier dans la session
+    $panier = $request->getSession()->get('panier', []);
+    
+    $filmId = $film->getId();
+    
+    $prixDynamique = $this->calculerPrixDynamique($film->getPrixLocationParDefaut(), $entityManager);
+    
+    if (isset($panier[$filmId])) {
+        $panier[$filmId]['quantite'] += $quantite;
+    } else {
+        $panier[$filmId] = [
+            'id' => $filmId,
+            'titre' => $film->getTitre(),
+            'affiche' => $film->getCheminAffiche(),
+            'annee' => $film->getAnnee(),
+            'genre' => $film->getGenre(),
+            'prix_base' => (float) $film->getPrixLocationParDefaut(),
+            'prix_dynamique' => $prixDynamique,
+            'quantite' => $quantite,
+            'duree' => $film->getDuree()
+        ];
+    }
+    
+    $request->getSession()->set('panier', $panier);
+    
+    $this->addFlash('success', sprintf('"%s" a été ajouté à votre panier', $film->getTitre()));
+    
+    return $this->redirectToRoute('app_film_show', ['id' => $filmId]);
+}
 
 }
