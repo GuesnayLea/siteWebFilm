@@ -17,6 +17,7 @@
     </div>
     
     {% if films|length > 0 %}
+        <!--affichage des favoris avec button-->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {% for item in films %}
                 {% set film = item.film %}
@@ -64,7 +65,7 @@
             {% endfor %}
         </div>
         
-        <!-- Pagination -->
+        <!--pagination-->
         {% if totalPages > 1 %}
             <nav class="mt-4">
                 <ul class="pagination justify-content-center">

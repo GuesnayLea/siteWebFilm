@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <!-- Filtres -->
+    <!--Filtres pour trouver films-->
     <div class="card mb-4">
         <div class="card-body">
             <form method="get" class="row g-3">
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <!-- Liste des films -->
+    <!--Liste des films-->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         {% for film in films %}
             <div class="col">
@@ -95,7 +95,7 @@
         {% endfor %}
     </div>
 
-    <!-- Pagination -->
+    <!--Pagination-->
     {% if films|length > 0 %}
         <nav class="mt-4">
             <ul class="pagination justify-content-center">

@@ -16,14 +16,10 @@ class UtilisateurRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateur::class);
     }
 
-    // Vous pouvez ajouter vos méthodes personnalisées ici
-    // Exemple : trouver un utilisateur par email
     public function findByEmail(string $email): ?Utilisateur
     {
         return $this->findOneBy(['email' => $email]);
     }
-    
-    // Exemple : trouver des utilisateurs par nom
     public function findByNom(string $nom): array
     {
         return $this->findBy(['nom' => $nom]);

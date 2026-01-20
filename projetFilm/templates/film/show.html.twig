@@ -4,6 +4,7 @@
 
 {% block body %}
 <div class="row">
+    <!--affichage de l'affiche du film-->
     <div class="col-md-4">
         {% if film.cheminAffiche %}
             <img src="{{ film.cheminAffiche }}" class="img-fluid rounded shadow" alt="{{ film.titre }}">
@@ -13,7 +14,7 @@
             </div>
         {% endif %}
     </div>
-    
+    <!--affichage des infos du film-->
     <div class="col-md-8">
         <h1>{{ film.titre }}</h1>
         <div class="d-flex gap-3 mb-3">
@@ -30,7 +31,7 @@
                 <p>{{ film.synopsis|nl2br }}</p>
             </div>
         </div>
-        
+        <!--affichage de la tarification-->
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        
+        <!--button louer,modifier,supprimer, favoris,...-->
         <div class="mt-4">
             {% if is_granted('ROLE_USER') %}
                 <form method="post" action="{{ path('app_cart_add', {'id': film.id}) }}" class="d-inline">

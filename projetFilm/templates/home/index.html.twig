@@ -19,7 +19,7 @@
         </div>
     </div>
 
-
+    <!--infos sur ce que permet le site-->
     <div class="row align-items-md-stretch mb-4">
         <div class="col-md-4">
             <div class="h-100 p-5 text-white bg-dark rounded-3">
@@ -30,13 +30,13 @@
         <div class="col-md-4">
             <div class="h-100 p-5 bg-primary text-white rounded-3">
                 <h2><i class="bi bi-tags"></i> Tarifs dynamiques</h2>
-                <p>Profitez de réductions selon le jour de la semaine.</p>
+                <p>Profitez de diverses réductions</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="h-100 p-5 text-white bg-success rounded-3">
                 <h2><i class="bi bi-heart"></i> Favoris</h2>
-                <p>Enregistrez vos films préférés pour plus tard.</p>
+                <p>Enregistrez vos films favoris</p>
             </div>
         </div>
     </div>
@@ -44,10 +44,10 @@
     <div class="card text-center mt-4">
         <div class="card-body">
             <h5 class="card-title">Prêt à commencer ?</h5>
-            <p class="card-text">Inscrivez-vous gratuitement pour louer des films et créer votre liste de favoris.</p>
+            <p class="card-text">Inscrivez-vous pour avoir accès à notre catalogue, louer des films, les ajouter à vos favoris....</p>
             {% if not app.user %}
                 <a href="{{ path('app_register') }}" class="btn btn-success me-2">
-                    <i class="bi bi-person-plus"></i> S'inscrire maintenant
+                    <i class="bi bi-person-plus"></i> S'inscrire
                 </a>
                 <a href="{{ path('app_login') }}" class="btn btn-outline-primary">
                     <i class="bi bi-box-arrow-in-right"></i> Se connecter

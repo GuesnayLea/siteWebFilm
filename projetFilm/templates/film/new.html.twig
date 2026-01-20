@@ -15,14 +15,14 @@
                 <div class="card-body">
                     {{ form_start(form) }}
                     
-                    <!-- Titre du film -->
+                    <!--titre du film-->
                     <div class="mb-3">
                         <label class="form-label">Titre du film *</label>
                         {{ form_widget(form.titre, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Inception'}}) }}
                         <small class="form-text text-muted">Le titre complet du film</small>
                     </div>
                     
-                    <!-- Année et Durée -->
+                    <!--Année et Durée-->
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Année de sortie *</label>
@@ -34,19 +34,19 @@
                         </div>
                     </div>
                     
-                    <!-- Genre -->
+                    <!--Genre-->
                     <div class="mb-3">
                         <label class="form-label">Genre</label>
                         {{ form_widget(form.genre, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Action, Comédie, Drame...'}}) }}
                     </div>
                     
-                    <!-- Synopsis -->
+                    <!--synopsis-->
                     <div class="mb-3">
                         <label class="form-label">Synopsis</label>
                         {{ form_widget(form.synopsis, {'attr': {'class': 'form-control', 'rows': 4, 'placeholder': 'Description du film...'}}) }}
                     </div>
                     
-                    <!-- Prix et Affiche -->
+                    <!--prix et affiche-->
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Prix de location *</label>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     
-                    <!-- Boutons -->
+                    <!--button-->
                     <div class="mt-4">
                         <button type="submit" class="btn btn-success btn-lg">
                             <i class="bi bi-check-circle"></i> Enregistrer le film

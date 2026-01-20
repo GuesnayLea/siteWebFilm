@@ -11,6 +11,7 @@
                     <h4 class="mb-0"><i class="bi bi-credit-card"></i> Simulation de paiement</h4>
                 </div>
                 <div class="card-body">
+                    <!--informations sur la commande-->
                     <div class="card mb-4">
                         <div class="card-header">
                             <h5 class="mb-0"><i class="bi bi-receipt"></i> Récapitulatif</h5>
@@ -32,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <!--formulaire pour recuperer les informations bancaire-->
                     <form method="post" action="{{ path('app_cart_confirm_payment') }}">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -44,7 +45,7 @@
                                     <div class="input-group">
                                         <input type="text" 
                                                class="form-control" 
-                                               value="4242 4242 4242 4242" 
+                                               value="0000 0000 0000 0000" 
                                                readonly
                                                style="letter-spacing: 2px;">
                                         <span class="input-group-text">
@@ -91,13 +92,6 @@
                             <button type="submit" class="btn btn-success btn-lg">
                                 <i class="bi bi-check-circle"></i> Confirmer le paiement
                             </button>
-                        </div>
-                        
-                        <div class="alert alert-info mt-4">
-                            <i class="bi bi-info-circle"></i>
-                            <strong>Note :</strong> Ceci est une simulation de paiement. 
-                            Aucune transaction réelle ne sera effectuée. 
-                            Après confirmation, vos locations seront enregistrées dans votre compte.
                         </div>
                     </form>
                 </div>
