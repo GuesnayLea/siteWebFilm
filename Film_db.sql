@@ -67,9 +67,6 @@ INSERT INTO `TARIF_DYNAMIQUE` (`jour_semaine`, `pourcentage_reduction`, `actif`)
 ('jeudi', -15.00, TRUE),
 ('dimanche',-10.00, TRUE);
 
--- Insertion de quelques films exemple
--- Supprimez les anciennes données si nécessaire (attention à la perte de données !)
--- DELETE FROM FILM; -- UNCOMMENT SEULEMENT SI VOUS VOULEZ TOUT EFFACER
 
 -- Insertion de 50 films avec URLs TMDB valides
 INSERT INTO `FILM` (`titre`, `annee`, `duree`, `synopsis`, `genre`, `prix_location_par_defaut`, `chemin_affiche`) VALUES
