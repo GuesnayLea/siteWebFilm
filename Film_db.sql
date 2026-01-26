@@ -8,6 +8,7 @@ CREATE TABLE `UTILISATEUR` (
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `mot_de_passe_hash` VARCHAR(255) NOT NULL,
     `nom` VARCHAR(100) NOT NULL,
+    `roles` JSON DEFAULT NULL,
     `date_inscription` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
