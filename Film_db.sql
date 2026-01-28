@@ -77,6 +77,7 @@ INSERT INTO `FILM` (`titre`, `annee`, `duree`, `synopsis`, `genre`, `prix_locati
 ('Everything Everywhere All at Once', 2022, 139, 'Une blanchisseuse voyage dans le multivers pour sauver sa famille.', 'Comédie', 4.75, 'https://image.tmdb.org/t/p/w500/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg'),
 ('Roma', 2018, 135, 'La vie d une domestique indigène au Mexique des années 70.', 'Drame', 3.75, 'https://image.tmdb.org/t/p/w500/6jV6b2Qx4EoCUQZ3p1kEGNt5J5.jpg'),
 ('Coco', 2017, 105, 'Un jeune Mexicain voyage au pays des morts durant le Dia de los Muertos.', 'Animation', 3.50, 'https://image.tmdb.org/t/p/w500/gPXKTs2wKrHKKbMiQpMoZqP8K4B.jpg'),
+('Coco le déglingo', 1997, 666, 'En juillet 97 un jeune homme nommé Coco le déglingo entra dans notre monde. Voici son histoire.', 'Auteur', 666,'https://m.media-amazon.com/images/S/pv-target-images/05aa2c7c4c0c0c0eab385ad8c7171930da9e238b6edd1947c00caadd047f6e13.jpg'),
 ('The Farewell', 2019, 100, 'Une famille chinoise cache un diagnostic à leur grand-mère.', 'Comédie dramatique', 3.25, 'https://image.tmdb.org/t/p/w500/x3NQ5rVoiuN0X8LJNcclrcX8GT6.jpg'),
 ('Minari', 2020, 115, 'Une famille coréenne tente de réaliser le rêve américain en Arkansas.', 'Drame', 3.50, 'https://image.tmdb.org/t/p/w500/5M1H2M1MGZlcAAJvkJRJvG2hjCb.jpg'),
 ('Spider-Man: Into the Spider-Verse', 2018, 117, 'Miles Morales devient Spider-Man et rencontre d autres versions.', 'Animation', 4.25, 'https://image.tmdb.org/t/p/w500/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg'),
