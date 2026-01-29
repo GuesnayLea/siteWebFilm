@@ -6,11 +6,11 @@ Une fois sur le dépot GitHub, prendre l'url : https://github.com/GuesnayLea/sit
 
 Ouvrir un terminal sur l'ordinateur et entrez les commandes suivantes
 
-git init
+```git init```
 
-git clone https://github.com/GuesnayLea/siteWebFilm 
+```git clone https://github.com/GuesnayLea/siteWebFilm``` 
 
-docker-compose up -d
+```docker-compose up -d```
 
 ### Accéder au site
 http://localhost:8084
