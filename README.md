@@ -18,5 +18,6 @@ http://localhost:8084
 ### Accéder à phpMyAdmin
 http://localhost:8080
 
-
+Utilisateur : root
+Mdp : root
 
