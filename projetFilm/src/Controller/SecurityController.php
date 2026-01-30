@@ -58,7 +58,7 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Compte créé avec succès!');
+            $this->addFlash('success', 'Compte créé avec succès');
             return $this->redirectToRoute('app_login');
         }
 
