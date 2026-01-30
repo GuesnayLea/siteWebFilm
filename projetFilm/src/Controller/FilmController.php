@@ -195,7 +195,6 @@ class FilmController extends AbstractController
         return $this->redirectToRoute('app_profile_favoris');
     }
 
-    // Dans FilmController.php, ajoutez cette méthode :
 
 #[Route('/{id}/panier/ajouter', name: 'app_film_add_to_cart', methods: ['POST'])]
 #[IsGranted('ROLE_USER')]

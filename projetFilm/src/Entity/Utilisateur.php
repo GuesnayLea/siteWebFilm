@@ -120,7 +120,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // fonction pour effacer les données temporaire si on a besoin 
+        // fonction pour effacer les données temporaire si on a besoin à voir
     }
 
     public function getUserIdentifier(): string
