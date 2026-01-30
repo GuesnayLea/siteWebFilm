@@ -2,6 +2,8 @@
 
 ### Installation du projet 
 
+Si vous n'avez pas de fichier zip pour ce projet : 
+
 Une fois sur le dépot GitHub, prendre l'url : https://github.com/GuesnayLea/siteWebFilm 
 
 Ouvrir un terminal sur l'ordinateur et entrez les commandes suivantes
@@ -9,6 +11,10 @@ Ouvrir un terminal sur l'ordinateur et entrez les commandes suivantes
 ```git init```
 
 ```git clone https://github.com/GuesnayLea/siteWebFilm``` 
+
+```docker-compose up -d```
+
+Sinon si vous avez déjà le dossier en fichier zip entrez seulement cette commande dans votre terminal et ça suffira :
 
 ```docker-compose up -d```
 
