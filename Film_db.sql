@@ -66,6 +66,7 @@ CREATE TABLE `LOCATION` (
 INSERT INTO `TARIF_DYNAMIQUE` (`jour_semaine`, `pourcentage_reduction`, `actif`) VALUES
 ('mardi', -20.00, TRUE),
 ('jeudi', -15.00, TRUE),
+('vendredi', -13.5,TRUE),
 ('dimanche',-10.00, TRUE);
 
 
